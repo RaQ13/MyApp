@@ -1,7 +1,24 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+
+const API = "http://localhost:3000";
+
 
 export const Main = () => {
 
+    useEffect(() => {
+        getDb();
+    }, []);
+
+    const getDb = () => {
+        fetch(`${API}/db`).then(res => res.json())
+            .then(data => {
+                console.log(data);
+            }).catch(error => {
+                console.log(error);
+        })
+    }
+
+    const [db, setDb] = useState([]);
     const [rate, setRate] = useState("");
     const [packages, setPackages] = useState("");
     const [zpo, setZpo] = useState("");
