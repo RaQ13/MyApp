@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 
 const API = "http://localhost:3000";
 
-
 export const Main = () => {
 
     useEffect(() => {
@@ -49,6 +48,7 @@ export const Main = () => {
 
     return (
         <>
+
             <div className="container daily__example__container">
                 <form className="example__form">
                     <label className="daily__example__label">Jaką masz stawkę za paczkę?</label>
