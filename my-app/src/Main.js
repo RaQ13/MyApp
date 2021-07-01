@@ -4,6 +4,8 @@ const API = "http://localhost:3000";
 
 export const Main = () => {
 
+    //import bazy danych
+
     useEffect(() => {
         getDb();
     }, []);
@@ -16,6 +18,9 @@ export const Main = () => {
                 console.log(error);
         })
     }
+    //--------------------
+
+    // zmienne state
 
     const [db, setDb] = useState([]);
     const [rate, setRate] = useState("");
@@ -25,8 +30,16 @@ export const Main = () => {
     const [notifZpo, setNotfiZpo] = useState("");
     const [effectiveness, setEffectiveness] = useState("");
 
+    //----------------------------
+
+    // zmienne pomocnicze
+
     const packagesSum = packages - notifications;
     const zpoSum = zpo - notifZpo;
+
+    //----------------------------
+
+    // funckcje kalkulacyjne
 
     const CalcExample = () => {
         return (rate * (Number(packages) + Number(zpo / 2))).toFixed(2);
@@ -46,42 +59,36 @@ export const Main = () => {
         console.log(Number(notifications))
     }
 
+    //----------------------------
+
+    //renderowana strona
+
     return (
         <>
 
-            <div className="container daily__example__container">
-                <form className="example__form">
-                    <label className="daily__example__label">Jaką masz stawkę za paczkę?</label>
+            <div className="container daily__form__container">
+                <form onChange={e => {CalcExample(); CalcSalary(); CalcEffectiveness();} } className="daily__form">
+                    <label className="daily__form__label">Jaką masz stawkę za paczkę?</label>
                     <input
                         value={rate}
                         type="number"
                         onChange={e => setRate(e.target.value)}
                         placeholder="Wprowadź stawkę"
                     />
-                    <label className="daily__example__label">Ile masz paczek?</label>
+                    <label className="daily__form__label">Ile masz paczek?</label>
                     <input
                         value={packages}
                         type="number"
                         onChange={e => setPackages(e.target.value)}
                         placeholder="Wprowadź ilość paczek"
                     />
-                    <label className="daily__example__label">Ile odbiorów w punkcie?</label>
+                    <label className="daily__form__label">Ile odbiorów w punkcie?</label>
                     <input
                         value={zpo}
                         type="number"
                         onChange={e => setZpo(e.target.value)}
                         placeholder="Wprowadź ilość ZPO"
                     />
-                </form>
-                <div>
-                    <p>Paczki do klientów indywidualnych: {packages}</p>
-                    <p>Paczki do odbioru w punkcie: {zpo}</p>
-                    <p>Ogólnie dzisiaj możesz zarobić: {CalcExample()}</p>
-                </div>
-            </div>
-
-            <div className="container daily__form__container">
-                <form className="daily__form" onChange={CalcEffectiveness}>
                     <label className="daily__form__label">Ile miałeś awiz?</label>
                     <input
                         value={notifications}
@@ -97,9 +104,15 @@ export const Main = () => {
                         placeholder="Wprowadź ilość awizowanych ZPO"
                     />
                 </form>
-                <div>
+                <div className="data__input">
+                    <p>Paczki do klientów indywidualnych: {packages}</p>
+                    <p>Paczki do odbioru w punkcie: {zpo}</p>
+                    <p>Ogólnie dzisiaj możesz zarobić: {CalcExample()}</p>
+                    <br></br>
                     <p>Ilośc awiz: {notifications}</p>
                     <p>Ilość awizowanych ZPO: {notifZpo}</p>
+                </div>
+                <div className="summary">
                     <p>Twoja doręczalnosć dzisiaj to: {effectiveness}</p>
                     <p>Faktycznie zarobiłeś dzisiaj: {CalcSalary()}</p>
                 </div>

@@ -52,11 +52,14 @@
 
 //header
 
-.daily__example__container, .daily__form__container {
+.daily__form__container {
+  border: 1px solid blue;
   height: 50vh;
+  margin-top: 100px;
   @include center;
   position: relative;
-  .example__form, .daily__form {
+  .daily__form {
+    border: 1px solid green;
     input {
       width: 300px;
       height: 1.5rem;
@@ -76,20 +79,23 @@
       position: relative;
       left: -66px;
     }
-  }
-}
-
-.daily__form__container {
-  .daily__form {
-    label:nth-child(1) {
+    label:nth-child(7) {
+      position: relative;
       left: -97px;
+      margin-top: 50px;
     }
-    label:nth-child(3) {
+    label:nth-child(9) {
       position: relative;
       left: -77px;
     }
   }
 }
 
+.data__input {
+  border: 1px solid red;
+}
 
+.summary {
+  border: 1px solid black;
+}
 
