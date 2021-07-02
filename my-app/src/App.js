@@ -2,6 +2,7 @@ import './App.css';
 import './scss/main.scss';
 import {Header} from "./Header";
 import {Main} from "./Main";
+import {MonthSummary} from "./MonthSummary";
 
 const dateNow = new Date();
 
@@ -10,6 +11,7 @@ function App() {
   <>
         <Header date={dateNow}></Header>
           <Main date={dateNow}></Main>
+      <MonthSummary></MonthSummary>
   </>
   );
 }

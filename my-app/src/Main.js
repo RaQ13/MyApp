@@ -14,6 +14,7 @@ export const Main = (props) => {
     const [notifZpo, setNotfiZpo] = useState("");
     const [effectiveness, setEffectiveness] = useState("");
     const [salary, setSalary] = useState("");
+    const [bar, setBar] = useState(true);
 
     //----------------------------
 
@@ -46,6 +47,7 @@ export const Main = (props) => {
     //dodawanie statystyk dnia
 
     const AddDay = () => {
+        setBar(prev => !prev);
         fetch(`${API}/db`, {
             method: "POST",
             headers: {
@@ -92,6 +94,33 @@ export const Main = (props) => {
 
     //----------------------------
 
+    const EffectivenesBar = () => {
+        if (bar === false) {
+            if (effectiveness <= 90) {
+                return (
+                    <div className="effectiveness-bar" style={{
+                        background: "red",
+                        height: `${effectiveness}%`
+                    }}>
+                        <p>
+                            {effectiveness}%
+                        </p>
+                    </div>
+                )
+            } if (effectiveness > 90) {
+                return (
+                    <div className="effectiveness-bar" style={{
+                        background: "green",
+                        height: `${effectiveness}%`
+                    }}>
+                        <p>
+                            {effectiveness}%
+                        </p>
+                    </div>
+                )
+            }
+        }
+    }
 
     //renderowana strona
 
@@ -144,11 +173,12 @@ export const Main = (props) => {
                     <br></br>
                     <p>Ilośc awiz: {notifications}</p>
                     <p>Ilość awizowanych ZPO: {notifZpo}</p>
-                    <button onClick={e => {AddDay()}} type="submit">Zakończ dzień</button>
+                    <button onClick={e => {AddDay(); EffectivenesBar()}} type="submit">Zakończ dzień</button>
                 </div>
-                <div className="summary">
+                <div className="day__summary">
                     <p>Twoja doręczalnosć dzisiaj to: {effectiveness}</p>
                     <p>Faktycznie zarobiłeś dzisiaj: {salary}</p>
+                    {EffectivenesBar()}
                 </div>
             </div>
         </>

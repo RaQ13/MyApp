@@ -88,7 +88,26 @@
   border: 1px solid red;
 }
 
-.summary {
+.day__summary {
+  position: relative;
+  height: 200px;
   border: 1px solid black;
+  padding: 0 50px 0 0;
+  .effectiveness-bar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    @include center;
+    p {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.month__summary {
+  h2 {
+    font-size: 2rem;
+  }
 }
 
