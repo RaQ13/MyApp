@@ -1,283 +1,314 @@
 {
   "db": [
     {
+      "day": 1,
+      "effectiveness": 96.32,
       "id": 1,
       "month": 1,
-      "day": 1,
-      "packages": 124,
-      "zpo": 12,
       "notifications": 5,
-      "salary": 268.75
+      "packages": 124,
+      "salary": 268.75,
+      "zpo": 12
     },
     {
+      "day": 2,
+      "effectiveness": 95.8,
       "id": 2,
       "month": 1,
-      "day": 2,
-      "packages": 130,
-      "zpo": 13,
       "notifications": 6,
-      "salary": 280.57
+      "packages": 130,
+      "salary": 280.57,
+      "zpo": 13
     },
     {
+      "day": 3,
+      "effectiveness": 93.83,
       "id": 3,
       "month": 1,
-      "day": 3,
-      "packages": 151,
-      "zpo": 11,
       "notifications": 10,
-      "salary": 314.97
+      "packages": 151,
+      "salary": 314.97,
+      "zpo": 11
     },
     {
+      "day": 4,
+      "effectiveness": 96.6,
       "id": 4,
       "month": 1,
-      "day": 4,
-      "packages": 132,
-      "zpo": 15,
       "notifications": 5,
-      "salary": 289.18
+      "packages": 132,
+      "salary": 289.18,
+      "zpo": 15
     },
     {
+      "day": 5,
+      "effectiveness": 97.46,
       "id": 5,
       "month": 1,
-      "day": 5,
-      "packages": 110,
-      "zpo": 8,
       "notifications": 3,
-      "salary": 235.42
+      "packages": 110,
+      "salary": 235.42,
+      "zpo": 8
     },
     {
+      "day": 6,
+      "effectiveness": 100,
       "id": 6,
       "month": 1,
-      "day": 6,
-      "packages": 120,
-      "zpo": 7,
       "notifications": 0,
-      "salary": 265.52
+      "packages": 120,
+      "salary": 265.52,
+      "zpo": 7
     },
     {
+      "day": 7,
+      "effectiveness": 99.3,
       "id": 7,
       "month": 1,
-      "day": 7,
-      "packages": 133,
-      "zpo": 10,
       "notifications": 1,
-      "salary": 294.55
+      "packages": 133,
+      "salary": 294.55,
+      "zpo": 10
     },
     {
+      "day": 8,
+      "effectiveness": 95.17,
       "id": 8,
       "month": 1,
-      "day": 8,
-      "packages": 137,
-      "zpo": 8,
       "notifications": 7,
-      "salary": 288.1
+      "packages": 137,
+      "salary": 288.1,
+      "zpo": 8
     },
     {
+      "day": 9,
+      "effectiveness": 96.21,
       "id": 9,
       "month": 1,
-      "day": 9,
-      "packages": 121,
-      "zpo": 11,
       "notifications": 5,
-      "salary": 261.22
+      "packages": 121,
+      "salary": 261.22,
+      "zpo": 11
     },
     {
+      "day": 10,
+      "effectiveness": 94.12,
       "id": 10,
       "month": 1,
-      "day": 10,
-      "packages": 97,
-      "zpo": 5,
       "notifications": 6,
-      "salary": 179.53
+      "packages": 97,
+      "salary": 179.53,
+      "zpo": 5
     },
     {
+      "day": 11,
+      "effectiveness": 93.28,
       "id": 11,
       "month": 1,
-      "day": 11,
-      "packages": 111,
-      "zpo": 8,
       "notifications": 8,
-      "salary": 230.05
+      "packages": 111,
+      "salary": 230.05,
+      "zpo": 8
     },
     {
+      "day": 12,
+      "effectiveness": 97.01,
       "id": 12,
       "month": 1,
-      "day": 12,
-      "packages": 124,
-      "zpo": 10,
       "notifications": 4,
-      "salary": 268.75
+      "packages": 124,
+      "salary": 268.75,
+      "zpo": 10
     },
     {
+      "day": 13,
+      "effectiveness": 96.55,
       "id": 13,
       "month": 1,
-      "day": 13,
-      "packages": 132,
-      "zpo": 13,
       "notifications": 5,
-      "salary": 287.02
+      "packages": 132,
+      "salary": 287.02,
+      "zpo": 13
     },
     {
+      "day": 14,
+      "effectiveness": 96.62,
       "id": 14,
       "month": 1,
-      "day": 14,
-      "packages": 139,
-      "zpo": 9,
       "notifications": 5,
-      "salary": 297.77
+      "packages": 139,
+      "salary": 297.77,
+      "zpo": 9
     },
     {
+      "day": 15,
+      "effectiveness": 95.45,
       "id": 15,
       "month": 1,
-      "day": 15,
-      "packages": 125,
-      "zpo": 7,
       "notifications": 6,
-      "salary": 263.38
+      "packages": 125,
+      "salary": 263.38,
+      "zpo": 7
     },
     {
+      "day": 16,
+      "effectiveness": 100,
       "id": 16,
       "month": 1,
-      "day": 16,
-      "packages": 109,
-      "zpo": 13,
       "notifications": 0,
-      "salary": 248.32
+      "packages": 109,
+      "salary": 248.32,
+      "zpo": 13
     },
     {
+      "day": 17,
+      "effectiveness": 100,
       "id": 17,
       "month": 1,
-      "day": 17,
-      "packages": 114,
-      "zpo": 8,
       "notifications": 0,
-      "salary": 253.7
+      "packages": 114,
+      "salary": 253.7,
+      "zpo": 8
     },
     {
+      "day": 18,
+      "effectiveness": 100,
       "id": 18,
       "month": 1,
-      "day": 18,
-      "packages": 119,
-      "zpo": 10,
       "notifications": 0,
-      "salary": 266.6
+      "packages": 119,
+      "salary": 266.6,
+      "zpo": 10
     },
     {
+      "day": 19,
+      "effectiveness": 95.97,
       "id": 19,
       "month": 1,
-      "day": 19,
-      "packages": 134,
-      "zpo": 15,
       "notifications": 6,
-      "salary": 291.32
+      "packages": 134,
+      "salary": 291.32,
+      "zpo": 15
     },
     {
+      "day": 20,
+      "effectiveness": 97.46,
       "id": 20,
       "month": 1,
-      "day": 20,
-      "packages": 111,
-      "zpo": 7,
       "notifications": 3,
-      "salary": 239.72
+      "packages": 111,
+      "salary": 239.72,
+      "zpo": 7
     },
     {
+      "day": 21,
+      "effectiveness": 96.9,
       "id": 21,
       "month": 1,
-      "day": 21,
-      "packages": 120,
-      "zpo": 9,
       "notifications": 4,
-      "salary": 259.07
+      "packages": 120,
+      "salary": 259.07,
+      "zpo": 9
     },
     {
+      "day": 22,
+      "effectiveness": 98.5,
       "id": 22,
       "month": 1,
-      "day": 22,
-      "packages": 123,
-      "zpo": 10,
       "notifications": 2,
-      "salary": 270.9
+      "packages": 123,
+      "salary": 270.9,
+      "zpo": 10
     },
     {
+      "day": 23,
+      "effectiveness": 99.17,
       "id": 23,
       "month": 1,
-      "day": 23,
-      "packages": 111,
-      "zpo": 9,
       "notifications": 1,
-      "salary": 246.17
+      "packages": 111,
+      "salary": 246.17,
+      "zpo": 9
     },
     {
+      "day": 24,
+      "effectiveness": 100,
       "id": 24,
       "month": 1,
-      "day": 24,
-      "packages": 100,
-      "zpo": 10,
       "notifications": 0,
-      "salary": 225.75
+      "packages": 100,
+      "salary": 225.75,
+      "zpo": 10
     },
     {
+      "day": 25,
+      "effectiveness": 100,
       "id": 25,
       "month": 1,
-      "day": 25,
-      "packages": 92,
-      "zpo": 9,
       "notifications": 0,
-      "salary": 207.47
+      "packages": 92,
+      "salary": 207.47,
+      "zpo": 9
     },
     {
+      "day": 26,
+      "effectiveness": 100,
       "id": 26,
       "month": 1,
-      "day": 26,
-      "packages": 122,
-      "zpo": 7,
       "notifications": 0,
-      "salary": 269.82
+      "packages": 122,
+      "salary": 269.82,
+      "zpo": 7
     },
     {
+      "day": 27,
+      "effectiveness": 97.9,
       "id": 27,
       "month": 1,
-      "day": 27,
-      "packages": 130,
-      "zpo": 13,
       "notifications": 3,
-      "salary": 282.72
+      "packages": 130,
+      "salary": 282.72,
+      "zpo": 13
     },
     {
+      "day": 28,
+      "effectiveness": 98.35,
       "id": 28,
       "month": 1,
-      "day": 28,
-      "packages": 110,
-      "zpo": 11,
       "notifications": 2,
-      "salary": 244.02
+      "packages": 110,
+      "salary": 244.02,
+      "zpo": 11
     },
     {
+      "day": 29,
+      "effectiveness": 100,
       "id": 29,
       "month": 1,
-      "day": 29,
-      "packages": 98,
-      "zpo": 3,
       "notifications": 0,
-      "salary": 222.52
+      "packages": 98,
+      "salary": 222.52,
+      "zpo": 3
     },
     {
+      "day": 30,
+      "effectiveness": 100,
       "id": 30,
       "month": 1,
-      "day": 30,
-      "packages": 90,
-      "zpo": 8,
       "notifications": 0,
-      "salary": 202.1
+      "packages": 90,
+      "salary": 202.1,
+      "zpo": 8
     },
     {
+      "day": 31,
+      "effectiveness": 99.21,
       "id": 31,
       "month": 1,
-      "day": 31,
-      "packages": 118,
-      "zpo": 8,
       "notifications": 1,
-      "salary": 260.15
+      "packages": 118,
+      "salary": 260.15,
+      "zpo": 8
     }
   ]
 }
