@@ -12,7 +12,7 @@ function App() {
         <MobileMenu date={dateNow}></MobileMenu>
       </header>
       <main>
-          <Main></Main>
+          <Main date={dateNow}></Main>
       </main>
   </>
   );
