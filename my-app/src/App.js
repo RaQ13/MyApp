@@ -1,6 +1,6 @@
 import './App.css';
 import './scss/main.scss';
-import {MobileMenu} from "./MobileMenu";
+import {Header} from "./Header";
 import {Main} from "./Main";
 
 const dateNow = new Date();
@@ -8,12 +8,8 @@ const dateNow = new Date();
 function App() {
   return (
   <>
-      <header>
-        <MobileMenu date={dateNow}></MobileMenu>
-      </header>
-      <main>
+        <Header date={dateNow}></Header>
           <Main date={dateNow}></Main>
-      </main>
   </>
   );
 }

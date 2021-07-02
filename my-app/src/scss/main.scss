@@ -17,18 +17,12 @@
 }
 
 
-.header__nav, .hamburger,{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-
 .container {
   max-width: 1325px;
   margin: 0 auto;
-  .mobile__menu {
-    .header__nav {
+  .header {
+    @include center;
+    justify-content: space-between;
       h2 {
         font-size: 3rem;
         font-family: "Prime", cursive;
@@ -43,7 +37,6 @@
         top: 30px;
         right: 0;
       }
-    }
   }
 }
 
