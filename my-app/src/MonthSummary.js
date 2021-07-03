@@ -9,7 +9,6 @@ export const MonthSummary = (props) => {
 
     useEffect(() => {
         setMonth(props.date.getMonth() + 1);
-        console.log(month)
         GetDb();
     }, []);
 
@@ -25,17 +24,14 @@ export const MonthSummary = (props) => {
 
     const MonthBars = (db) => {
 
-        const days = Array.from(db)
+        const actualMonth = props.date.getMonth() + 1;
+        const months = Array.from(db);
 
-        days.filter(function (day, index) {
-            console.log(day)
-            return (
-                <>
-                    <p>d</p>
-                </>
-            );
+        const searchedMonths = months.filter(function (month, index) {
+            console.log(month.month)
+            return month.month === actualMonth;
         })
-        console.log(days);
+        console.log(searchedMonths);
     }
 
     const Month = () => {

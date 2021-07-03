@@ -24,7 +24,7 @@ export const Main = (props) => {
     const packagesSum = packages - notifications;
     const zpoSum = zpo - notifZpo;
     const {date} = props;
-    const dayNow = date.getDay();
+    const dayNow = date.getDate();
     const monthNow = date.getMonth() +1;
 
     //----------------------------
