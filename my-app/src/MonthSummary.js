@@ -6,6 +6,7 @@ export const MonthSummary = (props) => {
 
     const [month, setMonth] = useState("");
     const [monthStats, setMonthStats] = useState([]);
+    const [fowardedMonth, setFowardedMonth] = useState([]);
 
     useEffect(() => {
         setMonth(props.date.getMonth() + 1);
@@ -28,9 +29,11 @@ export const MonthSummary = (props) => {
         const months = Array.from(db);
 
         const searchedMonths = months.filter(function (month, index) {
-            console.log(month.month)
             return month.month === actualMonth;
+
         })
+        setFowardedMonth(searchedMonths);
+        console.log(fowardedMonth);
         console.log(searchedMonths);
     }
 
@@ -80,7 +83,17 @@ export const MonthSummary = (props) => {
                     {Month()}
                 </div>
                 <div className="month__summary__bars">
-
+                    <ul className="days">
+                        {fowardedMonth.map(function (day, index){
+                            console.log(day.day)
+                            return (
+                                <li key={index} style={{
+                                    background: "green",
+                                    height: `${day.effectiveness}%`,
+                                }}><p>{day.effectiveness}%</p></li>
+                            )
+                        })}
+                    </ul>
                 </div>
             </div>
         </>

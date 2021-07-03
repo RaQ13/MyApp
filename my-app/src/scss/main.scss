@@ -106,7 +106,7 @@
 }
 
 .month__summary__container {
-  height: 30vh;
+  height: 20vh;
   .month__summary {
     h2 {
       font-size: 2rem;
@@ -116,6 +116,27 @@
     height: 100%;
     width: 100%;
     border: 1px solid red;
+    position: relative;
+    .days {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 90%;
+      li {
+        @include center;
+        width: 20px;
+        list-style-type: none;
+        margin: 0 10px;
+        position: sticky;
+        right: 0;
+        p {
+          transform: rotate(90deg);
+        }
+      }
+    }
   }
 }
 
