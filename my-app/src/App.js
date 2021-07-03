@@ -11,7 +11,7 @@ function App() {
   <>
         <Header date={dateNow}></Header>
           <Main date={dateNow}></Main>
-      <MonthSummary></MonthSummary>
+      <MonthSummary date={dateNow}></MonthSummary>
   </>
   );
 }

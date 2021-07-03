@@ -14,7 +14,8 @@ export const Main = (props) => {
     const [notifZpo, setNotfiZpo] = useState("");
     const [effectiveness, setEffectiveness] = useState("");
     const [salary, setSalary] = useState("");
-    const [bar, setBar] = useState(true);
+    const [bar, setBar] = useState(false);
+    const [verify, setVerify] = useState(false);
 
     //----------------------------
 
@@ -31,10 +32,10 @@ export const Main = (props) => {
     //import bazy danych
 
     useEffect(() => {
-        getDb();
+        GetDb();
     }, []);
 
-    const getDb = () => {
+    const GetDb = () => {
         fetch(`${API}/db`).then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -65,13 +66,14 @@ export const Main = (props) => {
     //----------------------------------
 
     const SetDay = (e) => {
+        console.log(notifZpo);
         e.preventDefault();
         setDay({
             month: monthNow,
             day: dayNow,
             packages: packagesSum,
             zpo: zpoSum,
-            notifications: Number(notifZpo) + Number(notifications),
+            notifications: Number(notifications) + Number(notifZpo),
             salary: Number(salary),
             effectiveness: Number(effectiveness),
         });
@@ -92,10 +94,28 @@ export const Main = (props) => {
             .toFixed(2));
     }
 
+    //weryfikacja danych
+
+    const Verify = () => {
+        setVerify(prev => !prev);
+    }
+    const FinishDay = () => {
+        if (verify === true) {
+            return (
+                <div className="day__summary">
+                    <p>Twoja doręczalnosć dzisiaj to: {effectiveness}</p>
+                    <p>Faktycznie zarobiłeś dzisiaj: {salary}</p>
+                    <button onClick={ e => {AddDay()}} type="submit">Zakończ dzień</button>
+                    {EffectivenesBar()}
+                </div>
+            );
+        } else return null
+    }
+
     //----------------------------
 
     const EffectivenesBar = () => {
-        if (bar === false) {
+        if (bar === true) {
             if (effectiveness <= 90) {
                 return (
                     <div className="effectiveness-bar" style={{
@@ -129,6 +149,7 @@ export const Main = (props) => {
 
             <div className="container daily__form__container">
                 <form onChange={e => {CalcExample(); CalcSalary(); CalcEffectiveness(); SetDay(e);}}
+                      onSubmit={e => { SetDay(e);}}
                       className="daily__form" >
                     <label className="daily__form__label">Jaką masz stawkę za paczkę?</label>
                     <input
@@ -165,6 +186,7 @@ export const Main = (props) => {
                         onChange={e => setNotfiZpo(e.target.value)}
                         placeholder="Wprowadź ilość awizowanych ZPO"
                     />
+                    <p>Czy dane się zgadzaja? <button onClick={e => {Verify(e)}}>OK</button></p>
                 </form>
                 <div className="data__input">
                     <p>Paczki do klientów indywidualnych: {packages}</p>
@@ -173,15 +195,9 @@ export const Main = (props) => {
                     <br></br>
                     <p>Ilośc awiz: {notifications}</p>
                     <p>Ilość awizowanych ZPO: {notifZpo}</p>
-                    <button onClick={e => {AddDay(); EffectivenesBar()}} type="submit">Zakończ dzień</button>
                 </div>
-                <div className="day__summary">
-                    <p>Twoja doręczalnosć dzisiaj to: {effectiveness}</p>
-                    <p>Faktycznie zarobiłeś dzisiaj: {salary}</p>
-                    {EffectivenesBar()}
-                </div>
+                <FinishDay></FinishDay>
             </div>
         </>
     )
 }
-

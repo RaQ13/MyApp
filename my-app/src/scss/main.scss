@@ -105,9 +105,18 @@
   }
 }
 
-.month__summary {
-  h2 {
-    font-size: 2rem;
+.month__summary__container {
+  height: 30vh;
+  .month__summary {
+    h2 {
+      font-size: 2rem;
+    }
+  }
+  .month__summary__bars {
+    height: 100%;
+    width: 100%;
+    border: 1px solid red;
   }
 }
+
 
