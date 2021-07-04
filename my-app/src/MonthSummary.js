@@ -7,21 +7,18 @@ export const MonthSummary = (props) => {
     const [month, setMonth] = useState("");
     const [monthStats, setMonthStats] = useState([]);
     const [fowardedMonth, setFowardedMonth] = useState([]);
+    const [showSummary, setShowSummary] = useState(false);
 
     useEffect(() => {
         setMonth(props.date.getMonth() + 1);
-        GetDb();
-    }, []);
-
-    const GetDb = () => {
         fetch(`${API}/db`).then(res => res.json()).then(data => {
             setMonthStats(data.db);
         })
             .catch(error => {
                 console.log(error);
             })
-        MonthBars(monthStats);
-    }
+    }, []);
+
 
     const MonthBars = (db) => {
 
@@ -33,9 +30,8 @@ export const MonthSummary = (props) => {
 
         })
         setFowardedMonth(searchedMonths);
-        console.log(fowardedMonth);
-        console.log(searchedMonths);
     }
+
 
     const Month = () => {
         if (month === 1) {
@@ -76,14 +72,37 @@ export const MonthSummary = (props) => {
         }
     }
 
+    const ShowSummamry = (e) => {
+        if (showSummary === false) {
+            setShowSummary(prev => (!prev));
+        }
+    }
+
+    if (showSummary === false) {
+        return (
+            <>
+                <div className="container month__summary__container">
+                    <div className="month__summary">
+                        <div className="month__summary__bars">
+                            <button style={{
+                                display: "block",
+                                margin: "0 auto",
+                            }} onClick={e => {ShowSummamry(e); MonthBars(monthStats);}}>Pokaż podsumowanie aktualnego miesiaca</button>
+                        </div>
+                    </div>
+                </div>
+            </>
+        )
+    }
+
     return (
         <>
-            <div className="container month__summary__container">
+            <div className="container month__summary__container center">
                 <div className="month__summary">
                     {Month()}
                 </div>
                 <div className="month__summary__bars">
-                    <ul className="days">
+                    <ul className="days-bars">
                         {fowardedMonth.map(function (day, index){
                             console.log(day.day)
                             return (
@@ -91,6 +110,14 @@ export const MonthSummary = (props) => {
                                     background: "green",
                                     height: `${day.effectiveness}%`,
                                 }}><p>{day.effectiveness}%</p></li>
+                            )
+                        })}
+                    </ul>
+                    <ul className="days-numbers">
+                        {fowardedMonth.map(function (day, index){
+                            console.log(day.day)
+                            return (
+                                <li key={index}><p>{day.day}</p></li>
                             )
                         })}
                     </ul>

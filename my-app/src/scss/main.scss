@@ -16,6 +16,7 @@
   url("../fonts/Prime-Regular.woff") format("woff");
 }
 
+//header
 
 .container {
   max-width: 1325px;
@@ -40,10 +41,7 @@
   }
 }
 
-
-
-
-//header
+//daily form
 
 .daily__form__container {
   border: 1px solid blue;
@@ -105,8 +103,10 @@
   }
 }
 
+//month summary section
+
 .month__summary__container {
-  height: 20vh;
+  height: 30vh;
   .month__summary {
     h2 {
       font-size: 2rem;
@@ -117,14 +117,15 @@
     width: 100%;
     border: 1px solid red;
     position: relative;
-    .days {
+    .days-bars, .days-numbers {
+      padding: 30px;
       display: flex;
       flex-direction: row;
       align-items: flex-end;
       position: absolute;
       bottom: 0;
       left: 0;
-      height: 90%;
+      height: 80%;
       li {
         @include center;
         width: 20px;
@@ -134,6 +135,13 @@
         right: 0;
         p {
           transform: rotate(90deg);
+        }
+      }
+    }
+    .days-numbers {
+      li {
+        p {
+          transform: rotate(0deg);
         }
       }
     }
