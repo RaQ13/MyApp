@@ -4,7 +4,7 @@ const API = "http://localhost:3000";
 
 export const MonthSummary = (props) => {
 
-    const [month, setMonth] = useState("");
+    const [month, setMonth] = useState(props.date.getMonth() + 1);
     const [monthStats, setMonthStats] = useState([]);
     const [fowardedMonth, setFowardedMonth] = useState([]);
     const [showSummary, setShowSummary] = useState(false);
@@ -22,14 +22,20 @@ export const MonthSummary = (props) => {
 
     const MonthBars = (db) => {
 
-        const actualMonth = props.date.getMonth() + 1;
         const months = Array.from(db);
 
-        const searchedMonths = months.filter(function (month, index) {
-            return month.month === actualMonth;
+        const searchedMonths = months.filter(function (filteredMonth, index) {
+            return filteredMonth.month === month;
 
         })
         setFowardedMonth(searchedMonths);
+    }
+
+    const ChooseMonthBars = (ev) => {
+        if (ev.target.innerText === "Poprzedni miesiąc") {
+            setMonth(prev => (prev -1));
+            MonthBars(monthStats);
+        }
     }
 
 
@@ -97,9 +103,10 @@ export const MonthSummary = (props) => {
 
     return (
         <>
-            <div className="container month__summary__container center">
+            <div className="container month__summary__container">
                 <div className="month__summary">
                     {Month()}
+                    <p>Zarobiłeś: </p>
                 </div>
                 <div className="month__summary__bars">
                     <ul className="days-bars">
@@ -120,7 +127,13 @@ export const MonthSummary = (props) => {
                                 <li key={index}><p>{day.day}</p></li>
                             )
                         })}
+                        <p className="days-bars__number">Dzień L.p.</p>
                     </ul>
+                    <p className="days-bars__effectivenes">Efektywność %</p>
+                </div>
+                <div onClick={ev => {ChooseMonthBars(ev)}} className="month__summary__choose-btns">
+                    <button>Poprzedni miesiąc</button>
+                    <button>Następny miesiąc</button>
                 </div>
             </div>
         </>
