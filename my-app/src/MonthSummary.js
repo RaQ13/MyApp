@@ -4,13 +4,12 @@ const API = "http://localhost:3000";
 
 export const MonthSummary = (props) => {
 
-    const [month, setMonth] = useState(props.date.getMonth() + 1);
+    const [month, setMonth] = useState("");
     const [monthStats, setMonthStats] = useState([]);
     const [fowardedMonth, setFowardedMonth] = useState([]);
     const [showSummary, setShowSummary] = useState(false);
 
     useEffect(() => {
-        setMonth(props.date.getMonth() + 1);
         fetch(`${API}/db`).then(res => res.json()).then(data => {
             setMonthStats(data.db);
         })
@@ -19,12 +18,17 @@ export const MonthSummary = (props) => {
             })
     }, []);
 
+    const ShowSummamry = (e) => {
+        if (showSummary === false) {
+            setShowSummary(prev => (!prev));
+            setMonth(props.date.getMonth() + 1);
+        }
+    }
 
     const MonthBars = (db) => {
 
         const months = Array.from(db);
-
-        const searchedMonths = months.filter(function (filteredMonth, index) {
+        const searchedMonths = months.filter(function (filteredMonth) {
             return filteredMonth.month === month;
 
         })
@@ -32,8 +36,13 @@ export const MonthSummary = (props) => {
     }
 
     const ChooseMonthBars = (ev) => {
+
         if (ev.target.innerText === "Poprzedni miesiąc") {
             setMonth(prev => (prev -1));
+            MonthBars(monthStats);
+        }
+        if (ev.target.innerText === "Następny miesiąc") {
+            setMonth(prev => (prev +1));
             MonthBars(monthStats);
         }
     }
@@ -78,10 +87,12 @@ export const MonthSummary = (props) => {
         }
     }
 
-    const ShowSummamry = (e) => {
-        if (showSummary === false) {
-            setShowSummary(prev => (!prev));
-        }
+    const SalarySum = () => {
+        let salarySum = 0;
+        {fowardedMonth.forEach(function (day){
+            salarySum += day.salary;
+        })}
+        return salarySum;
     }
 
     if (showSummary === false) {
@@ -93,7 +104,7 @@ export const MonthSummary = (props) => {
                             <button style={{
                                 display: "block",
                                 margin: "0 auto",
-                            }} onClick={e => {ShowSummamry(e); MonthBars(monthStats);}}>Pokaż podsumowanie aktualnego miesiaca</button>
+                            }} onClick={e => {ShowSummamry(e); MonthBars(monthStats); }}>Pokaż podsumowanie aktualnego miesiaca</button>
                         </div>
                     </div>
                 </div>
@@ -106,12 +117,11 @@ export const MonthSummary = (props) => {
             <div className="container month__summary__container">
                 <div className="month__summary">
                     {Month()}
-                    <p>Zarobiłeś: </p>
+                    <p>W tym miesiącu zarobiłeś: {SalarySum()}</p>
                 </div>
                 <div className="month__summary__bars">
                     <ul className="days-bars">
                         {fowardedMonth.map(function (day, index){
-                            console.log(day.day)
                             return (
                                 <li key={index} style={{
                                     background: "green",
@@ -122,7 +132,6 @@ export const MonthSummary = (props) => {
                     </ul>
                     <ul className="days-numbers">
                         {fowardedMonth.map(function (day, index){
-                            console.log(day.day)
                             return (
                                 <li key={index}><p>{day.day}</p></li>
                             )

@@ -151,42 +151,44 @@ export const Main = (props) => {
                 <form onChange={e => {CalcExample(); CalcSalary(); CalcEffectiveness(); SetDay(e);}}
                       onSubmit={e => { SetDay(e);}}
                       className="daily__form" >
-                    <label className="daily__form__label">Jaką masz stawkę za paczkę?</label>
-                    <input
-                        value={rate}
-                        type="number"
-                        onChange={e => setRate(e.target.value)}
-                        placeholder="Wprowadź stawkę"
-                    />
-                    <label className="daily__form__label">Ile masz paczek?</label>
-                    <input
-                        value={packages}
-                        type="number"
-                        onChange={e => setPackages(e.target.value)}
-                        placeholder="Wprowadź ilość paczek"
-                    />
-                    <label className="daily__form__label">Ile odbiorów w punkcie?</label>
-                    <input
-                        value={zpo}
-                        type="number"
-                        onChange={e => setZpo(e.target.value)}
-                        placeholder="Wprowadź ilość ZPO"
-                    />
-                    <label className="daily__form__label">Ile miałeś awiz?</label>
-                    <input
-                        value={notifications}
-                        type="number"
-                        onChange={e => setNotifications(e.target.value)}
-                        placeholder="Wprowadź ilość awiz"
-                    />
-                    <label className="daily__form__label">Ile awizowanych ZPO</label>
-                    <input
-                        value={notifZpo}
-                        type="number"
-                        onChange={e => setNotfiZpo(e.target.value)}
-                        placeholder="Wprowadź ilość awizowanych ZPO"
-                    />
-                    <p>Czy dane się zgadzaja? <button onClick={e => {Verify(e)}}>OK</button></p>
+                    <div className="row">
+                        <label className="daily__form__label">Jaką masz stawkę za paczkę?</label>
+                        <input
+                            value={rate}
+                            type="number"
+                            onChange={e => setRate(e.target.value)}
+                            placeholder="Wprowadź stawkę"
+                        />
+                        <label className="daily__form__label">Ile masz paczek?</label>
+                        <input
+                            value={packages}
+                            type="number"
+                            onChange={e => setPackages(e.target.value)}
+                            placeholder="Wprowadź ilość paczek"
+                        />
+                        <label className="daily__form__label">Ile odbiorów w punkcie?</label>
+                        <input
+                            value={zpo}
+                            type="number"
+                            onChange={e => setZpo(e.target.value)}
+                            placeholder="Wprowadź ilość ZPO"
+                        />
+                        <label className="daily__form__label">Ile miałeś awiz?</label>
+                        <input
+                            value={notifications}
+                            type="number"
+                            onChange={e => setNotifications(e.target.value)}
+                            placeholder="Wprowadź ilość awiz"
+                        />
+                        <label className="daily__form__label">Ile awizowanych ZPO</label>
+                        <input
+                            value={notifZpo}
+                            type="number"
+                            onChange={e => setNotfiZpo(e.target.value)}
+                            placeholder="Wprowadź ilość awizowanych ZPO"
+                        />
+                        <p>Czy dane się zgadzaja? <button onClick={e => {Verify(e)}}>OK</button></p>
+                    </div>
                 </form>
                 <div className="data__input">
                     <p>Paczki do klientów indywidualnych: {packages}</p>
