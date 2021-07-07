@@ -102,8 +102,8 @@ export const Main = (props) => {
     const FinishDay = () => {
         if (verify === true) {
             return (
-                <div className="day__summary">
-                    <p>Twoja doręczalnosć dzisiaj to: {effectiveness}</p>
+                <div className="day__summary col-sm-12 col-md-4 col-lg-4">
+                    <p className="day-bar">Twoja doręczalnosć dzisiaj to: {effectiveness}</p>
                     <p>Faktycznie zarobiłeś dzisiaj: {salary}</p>
                     <button onClick={ e => {AddDay()}} type="submit">Zakończ dzień</button>
                     {EffectivenesBar()}
@@ -148,57 +148,60 @@ export const Main = (props) => {
         <>
 
             <div className="container daily__form__container">
+                <div className="row">
                 <form onChange={e => {CalcExample(); CalcSalary(); CalcEffectiveness(); SetDay(e);}}
                       onSubmit={e => { SetDay(e);}}
-                      className="daily__form" >
-                    <div className="row">
-                        <label className="daily__form__label">Jaką masz stawkę za paczkę?</label>
-                        <input
-                            value={rate}
-                            type="number"
-                            onChange={e => setRate(e.target.value)}
-                            placeholder="Wprowadź stawkę"
-                        />
-                        <label className="daily__form__label">Ile masz paczek?</label>
-                        <input
-                            value={packages}
-                            type="number"
-                            onChange={e => setPackages(e.target.value)}
-                            placeholder="Wprowadź ilość paczek"
-                        />
-                        <label className="daily__form__label">Ile odbiorów w punkcie?</label>
-                        <input
-                            value={zpo}
-                            type="number"
-                            onChange={e => setZpo(e.target.value)}
-                            placeholder="Wprowadź ilość ZPO"
-                        />
-                        <label className="daily__form__label">Ile miałeś awiz?</label>
-                        <input
-                            value={notifications}
-                            type="number"
-                            onChange={e => setNotifications(e.target.value)}
-                            placeholder="Wprowadź ilość awiz"
-                        />
-                        <label className="daily__form__label">Ile awizowanych ZPO</label>
-                        <input
-                            value={notifZpo}
-                            type="number"
-                            onChange={e => setNotfiZpo(e.target.value)}
-                            placeholder="Wprowadź ilość awizowanych ZPO"
-                        />
-                        <p>Czy dane się zgadzaja? <button onClick={e => {Verify(e)}}>OK</button></p>
-                    </div>
+                      className="daily__form col-sm-12 col-md-4 col-lg-4" >
+                    <label className="daily__form__label">Jaką masz stawkę za paczkę?</label>
+                    <input
+                        value={rate}
+                        type="number"
+                        onChange={e => setRate(e.target.value)}
+                        placeholder="Wprowadź stawkę"
+                    />
+                    <label className="daily__form__label">Ile masz paczek?</label>
+                    <input
+                        value={packages}
+                        type="number"
+                        onChange={e => setPackages(e.target.value)}
+                        placeholder="Wprowadź ilość paczek"
+                    />
+                    <label className="daily__form__label">Ile odbiorów w punkcie?</label>
+                    <input
+                        value={zpo}
+                        type="number"
+                        onChange={e => setZpo(e.target.value)}
+                        placeholder="Wprowadź ilość ZPO"
+                    />
+                    <label className="daily__form__label">Ile miałeś awiz?</label>
+                    <input
+                        value={notifications}
+                        type="number"
+                        onChange={e => setNotifications(e.target.value)}
+                        placeholder="Wprowadź ilość awiz"
+                    />
+                    <label className="daily__form__label">Ile awizowanych ZPO</label>
+                    <input
+                        value={notifZpo}
+                        type="number"
+                        onChange={e => setNotfiZpo(e.target.value)}
+                        placeholder="Wprowadź ilość awizowanych ZPO"
+                    />
                 </form>
-                <div className="data__input">
-                    <p>Paczki do klientów indywidualnych: {packages}</p>
-                    <p>Paczki do odbioru w punkcie: {zpo}</p>
-                    <p>Ogólnie dzisiaj możesz zarobić: {CalcExample()}</p>
-                    <br></br>
-                    <p>Ilośc awiz: {notifications}</p>
-                    <p>Ilość awizowanych ZPO: {notifZpo}</p>
-                </div>
+                    <div className="data__input col-sm-12 col-md-4 col-lg-4">
+                        <div className="data__input__container">
+                        <p>Paczki do klientów indywidualnych: {packages}</p>
+                        <p>Paczki do odbioru w punkcie: {zpo}</p>
+                        <p>Ogólnie dzisiaj możesz zarobić: {CalcExample()}</p>
+                        <br></br>
+                        <p>Ilośc awiz: {notifications}</p>
+                        <p>Ilość awizowanych ZPO: {notifZpo}</p>
+                        <br></br>
+                        <p>Czy dane się zgadzaja? <button onClick={e => {Verify(e)}}>OK</button></p>
+                        </div>
+                   </div>
                 <FinishDay></FinishDay>
+                </div>
             </div>
         </>
     )
