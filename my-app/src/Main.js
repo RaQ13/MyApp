@@ -103,7 +103,7 @@ export const Main = (props) => {
         if (verify === true) {
             return (
                 <div className="day__summary col-sm-12 col-md-4 col-lg-4">
-                    <p className="day-bar">Twoja doręczalnosć dzisiaj to: {effectiveness}</p>
+                    <p>Twoja doręczalnosć dzisiaj to: {effectiveness}</p>
                     <p>Faktycznie zarobiłeś dzisiaj: {salary}</p>
                     <button onClick={ e => {AddDay()}} type="submit">Zakończ dzień</button>
                     {EffectivenesBar()}
@@ -122,7 +122,7 @@ export const Main = (props) => {
                         background: "red",
                         height: `${effectiveness}%`
                     }}>
-                        <p>
+                        <p className="day-bar">
                             {effectiveness}%
                         </p>
                     </div>
@@ -133,7 +133,7 @@ export const Main = (props) => {
                         background: "green",
                         height: `${effectiveness}%`
                     }}>
-                        <p>
+                        <p className="day-bar">
                             {effectiveness}%
                         </p>
                     </div>

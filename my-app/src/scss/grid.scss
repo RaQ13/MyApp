@@ -24,7 +24,7 @@ body {
   [class*="col-"] {
     box-sizing: border-box;
     padding: $gap;
-    margin-bottom: $gap * 2;
+    margin: $gap;
     min-height: 1px;
     width: 100%;
     //border: 1px solid black;
@@ -38,7 +38,7 @@ body {
 
   @for $i from 1 through $columns {
     .col-#{$i} {
-      width: (100 / $columns * $i) * 1%;
+      width: (100 / $columns * $i ) * 1%;
     }
   }
 
@@ -61,7 +61,7 @@ body {
   @for $i from 1 through $columns {
     @media (min-width: $desktop) {
       .col-lg-#{$i} {
-        width: (100 / $columns * $i) * 1%;
+        width: (100 / $columns * $i ) * 1%;
       }
     }
   }

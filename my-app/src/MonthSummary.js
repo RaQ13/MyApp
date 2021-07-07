@@ -92,13 +92,15 @@ export const MonthSummary = (props) => {
         {fowardedMonth.forEach(function (day){
             salarySum += day.salary;
         })}
-        return salarySum;
+        return salarySum.toFixed(2);
     }
 
     if (showSummary === false) {
         return (
             <>
-                <div className="container month__summary__container">
+                <div className="container month__summary__container" style={{
+                    width: "20%",
+                }}>
                     <div className="month__summary">
                         <div className="month__summary__bars">
                             <button style={{
@@ -122,9 +124,13 @@ export const MonthSummary = (props) => {
                 <div className="month__summary__bars">
                     <ul className="days-bars">
                         {fowardedMonth.map(function (day, index){
+                            let dayEffect = false
+                            if (day.effectiveness < 90) {
+                                    dayEffect = false;
+                            } else dayEffect = true;
                             return (
                                 <li key={index} style={{
-                                    background: "green",
+                                    background: dayEffect ? "green" : "red",
                                     height: `${day.effectiveness}%`,
                                 }}><p>{day.effectiveness}%</p></li>
                             )
@@ -132,6 +138,7 @@ export const MonthSummary = (props) => {
                     </ul>
                     <ul className="days-numbers">
                         {fowardedMonth.map(function (day, index){
+                            console.log(day);
                             return (
                                 <li key={index}><p>{day.day}</p></li>
                             )
