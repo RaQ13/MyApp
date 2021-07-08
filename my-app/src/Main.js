@@ -64,6 +64,14 @@ export const Main = (props) => {
     //----------------------------------
 
     const SetDay = (e) => {
+        console.log(monthNow)
+        console.log(dayNow)
+        console.log(packagesSum)
+        console.log(zpoSum)
+        console.log(notifications + notifZpo)
+        console.log(salary)
+        console.log(effectiveness)
+        console.log(rate)
         e.preventDefault();
         setDay({
             month: monthNow,
@@ -146,8 +154,8 @@ export const Main = (props) => {
 
             <div className="container daily__form__container">
                 <div className="row">
-                <form onChange={e => {CalcExample(); CalcSalary(); CalcEffectiveness(); SetDay(e);}}
-                      onSubmit={e => { SetDay(e);}}
+                <form onChange={e => {CalcExample(); CalcSalary(); CalcEffectiveness()}}
+                      onSubmit={e => {SetDay(e)}}
                       className="daily__form col-sm-12 col-md-4 col-lg-4" >
                     <label className="daily__form__label">Jaką masz stawkę za paczkę?</label>
                     <input
@@ -184,6 +192,7 @@ export const Main = (props) => {
                         onChange={e => setNotfiZpo(e.target.value)}
                         placeholder="Wprowadź ilość awizowanych ZPO"
                     />
+                    <p>Czy dane się zgadzaja? <button type="submit" onClick={e => {Verify(e)}}>OK</button></p>
                 </form>
                     <div className="data__input col-sm-12 col-md-4 col-lg-4">
                         <div className="data__input__container">
@@ -194,7 +203,6 @@ export const Main = (props) => {
                         <p>Ilośc awiz: {notifications}</p>
                         <p>Ilość awizowanych ZPO: {notifZpo}</p>
                         <br></br>
-                        <p>Czy dane się zgadzaja? <button onClick={e => {Verify(e)}}>OK</button></p>
                         </div>
                    </div>
                 <FinishDay></FinishDay>

@@ -369,6 +369,16 @@
       "salary": 292.4,
       "effectiveness": 87.65,
       "id": 37
+    },
+    {
+      "month": 7,
+      "day": 8,
+      "packages": 142,
+      "zpo": 18,
+      "notifications": 14,
+      "salary": 327.88,
+      "effectiveness": 93.68,
+      "id": 38
     }
   ]
 }

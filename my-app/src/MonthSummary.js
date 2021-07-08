@@ -61,7 +61,7 @@ export const MonthSummary = (props) => {
 
         let fowardedDay = "";
 
-        if (ev.target.tagName != "LI" && ev.target.tagName != "P") {
+        if (ev.target.tagName !== "LI" && ev.target.tagName !== "P") {
             return
         }
 
