@@ -8,6 +8,7 @@ export const MonthSummary = (props) => {
     const [monthStats, setMonthStats] = useState([]);
     const [fowardedMonth, setFowardedMonth] = useState([]);
     const [showSummary, setShowSummary] = useState(false);
+    const [shownDay, setShownDay] = useState([]);
 
     useEffect(() => {
         fetch(`${API}/db`).then(res => res.json()).then(data => {
@@ -23,6 +24,14 @@ export const MonthSummary = (props) => {
             setShowSummary(prev => (!prev));
             setMonth(props.date.getMonth() + 1);
         }
+    }
+
+    const SalarySum = () => {
+        let salarySum = 0;
+        {fowardedMonth.forEach(function (day){
+            salarySum += day.salary;
+        })}
+        return salarySum.toFixed(2);
     }
 
     const MonthBars = (db) => {
@@ -44,9 +53,30 @@ export const MonthSummary = (props) => {
         if (ev.target.innerText === "Następny miesiąc") {
             setMonth(prev => (prev +1));
             MonthBars(monthStats);
+            console.log(month);
         }
     }
 
+    const ShowDay = (ev) => {
+
+        let fowardedDay = "";
+
+        if (ev.target.tagName != "LI" && ev.target.tagName != "P") {
+            return
+        }
+
+        if (ev.target.tagName === "LI") {
+            fowardedDay = ev.target.innerText;
+            }
+            if (ev.target.tagName === "P") {
+                fowardedDay = ev.target.parentElement.innerText;
+            }
+            const choosenDay = fowardedMonth.filter(function (day){
+                return day.day === Number(fowardedDay);
+            })
+        setShownDay(choosenDay);
+            console.log(shownDay);
+    }
 
     const Month = () => {
         if (month === 1) {
@@ -87,13 +117,7 @@ export const MonthSummary = (props) => {
         }
     }
 
-    const SalarySum = () => {
-        let salarySum = 0;
-        {fowardedMonth.forEach(function (day){
-            salarySum += day.salary;
-        })}
-        return salarySum.toFixed(2);
-    }
+    console.log(month)
 
     if (showSummary === false) {
         return (
@@ -121,7 +145,7 @@ export const MonthSummary = (props) => {
                     {Month()}
                     <p>W tym miesiącu zarobiłeś: {SalarySum()}</p>
                 </div>
-                <div className="month__summary__bars">
+                <div onClick={ev => {ShowDay(ev);}} className="month__summary__bars">
                     <ul className="days-bars">
                         {fowardedMonth.map(function (day, index){
                             let dayEffect = false
@@ -138,7 +162,6 @@ export const MonthSummary = (props) => {
                     </ul>
                     <ul className="days-numbers">
                         {fowardedMonth.map(function (day, index){
-                            console.log(day);
                             return (
                                 <li key={index}><p>{day.day}</p></li>
                             )
@@ -152,6 +175,21 @@ export const MonthSummary = (props) => {
                     <button>Następny miesiąc</button>
                 </div>
             </div>
+            {shownDay.map(function (el, index){
+                return (
+                    <>
+                        <div className="container shown__day__stats">
+                            <h3>Podglądasz dzień: {el.day}</h3>
+                            <ul className="shown__day__list">
+                                <li key={index}>W tym dniu miałeś {el.packages} paczek</li>
+                                <li key={index}>Awizowałeś: {el.notifications} paczek</li>
+                                <li key={index}>Zarobiłeś tego dnia: {el.salary}zł</li>
+                                <li key={index}>Twoja doręczalność wynosiła {el.effectiveness} paczek</li>
+                            </ul>
+                        </div>
+                    </>
+                )
+            })}
         </>
     )
 }

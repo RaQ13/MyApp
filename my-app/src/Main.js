@@ -37,9 +37,7 @@ export const Main = (props) => {
 
     const GetDb = () => {
         fetch(`${API}/db`).then(res => res.json())
-            .then(data => {
-                console.log(data);
-            }).catch(error => {
+            .catch(error => {
                 console.log(error);
         })
     }
@@ -66,7 +64,6 @@ export const Main = (props) => {
     //----------------------------------
 
     const SetDay = (e) => {
-        console.log(notifZpo);
         e.preventDefault();
         setDay({
             month: monthNow,

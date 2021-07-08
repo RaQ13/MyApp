@@ -11,6 +11,14 @@
   align-items: center;
 }
 
+@mixin gradientBackground {
+  background: #f0b7a1;
+  background: -moz-linear-gradient(-45deg,  #f0b7a1 0%, #752201 10%, #752201 23%, #bf6e4e 94%);
+  background: -webkit-linear-gradient(-45deg,  #f0b7a1 0%,#752201 10%,#752201 23%,#bf6e4e 94%);
+  background: linear-gradient(135deg,  #f0b7a1 0%,#752201 10%,#752201 23%,#bf6e4e 94%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=1 );
+}
+
 @font-face {
   font-family: "Prime";
   src: local("Prime"),
@@ -18,7 +26,7 @@
   url("../fonts/Prime-Regular.woff") format("woff");
 }
 
-h1, .header__date, button {
+h1, .header__date, button, .shown__day__list, h3 {
   color: wheat;
 }
 button {
@@ -78,11 +86,7 @@ body:before {
 //daily form
 
 .daily__form__container {
-  background: #f0b7a1; /* Old browsers */
-  background: -moz-linear-gradient(-45deg,  #f0b7a1 0%, #752201 10%, #752201 23%, #bf6e4e 94%);
-  background: -webkit-linear-gradient(-45deg,  #f0b7a1 0%,#752201 10%,#752201 23%,#bf6e4e 94%);
-  background: linear-gradient(135deg,  #f0b7a1 0%,#752201 10%,#752201 23%,#bf6e4e 94%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=1 );
+  @include gradientBackground;
   height: 50vh;
   margin-top: 100px;
   position: relative;
@@ -222,13 +226,7 @@ body:before {
     }
   }
   .month__summary__bars {
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f0b7a1+0,752201+10,752201+23,bf6e4e+94 */
-    background: #f0b7a1; /* Old browsers */
-    background: -moz-linear-gradient(-45deg,  #f0b7a1 0%, #752201 10%, #752201 23%, #bf6e4e 94%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg,  #f0b7a1 0%,#752201 10%,#752201 23%,#bf6e4e 94%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg,  #f0b7a1 0%,#752201 10%,#752201 23%,#bf6e4e 94%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
+    @include gradientBackground;
     height: 100%;
     width: 100%;
     position: relative;
@@ -249,6 +247,8 @@ body:before {
         margin: 0 10px;
         position: sticky;
         right: 0;
+        z-index: 1;
+        cursor: pointer;
         p {
           transform: rotate(270deg);
         }
@@ -256,6 +256,8 @@ body:before {
     }
     .days-numbers {
       li {
+        align-items: flex-end;
+        height: 100%;
         p {
           transform: rotate(0deg);
         }
@@ -312,6 +314,18 @@ body:before {
     button {
       display: block;
     }
+  }
+}
+
+.shown__day__stats {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 20px;
+  @include gradientBackground;
+  .shown__day__list {
+    margin-top: 2rem;
+    list-style-type: "-- ";
+    list-style-position: inside;
   }
 }
 
