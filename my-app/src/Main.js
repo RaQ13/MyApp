@@ -26,6 +26,7 @@ export const Main = (props) => {
     const {date} = props;
     const dayNow = date.getDate();
     const monthNow = date.getMonth() +1;
+    const componentsWidth = verify ? "day__summary col-sm-12 col-md-4 col-lg-4" : "day__summary col-sm-12 col-md-6 col-lg-6";
 
     //----------------------------
 
@@ -107,7 +108,7 @@ export const Main = (props) => {
     const FinishDay = () => {
         if (verify === true) {
             return (
-                <div className="day__summary col-sm-12 col-md-4 col-lg-4">
+                <div className={`${componentsWidth}`}>
                     <p>Twoja doręczalnosć dzisiaj to: {effectiveness}</p>
                     <p>Faktycznie zarobiłeś dzisiaj: {salary}</p>
                     <button onClick={ e => {AddDay()}} type="submit">Zakończ dzień</button>
@@ -156,7 +157,7 @@ export const Main = (props) => {
                 <div className="row">
                 <form onChange={e => {CalcExample(); CalcSalary(); CalcEffectiveness()}}
                       onSubmit={e => {SetDay(e)}}
-                      className="daily__form col-sm-12 col-md-4 col-lg-4" >
+                      className={`daily__form ${componentsWidth}`}>
                     <label className="daily__form__label">Jaką masz stawkę za paczkę?</label>
                     <input
                         value={rate}
@@ -194,7 +195,7 @@ export const Main = (props) => {
                     />
                     <p>Czy dane się zgadzaja? <button type="submit" onClick={e => {Verify(e)}}>OK</button></p>
                 </form>
-                    <div className="data__input col-sm-12 col-md-4 col-lg-4">
+                    <div className={`data__input ${componentsWidth}`}>
                         <div className="data__input__container">
                         <p>Paczki do klientów indywidualnych: {packages}</p>
                         <p>Paczki do odbioru w punkcie: {zpo}</p>
