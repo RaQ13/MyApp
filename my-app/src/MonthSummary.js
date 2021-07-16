@@ -131,6 +131,7 @@ export const MonthSummary = (props) => {
                             <button style={{
                                 display: "block",
                                 margin: "0 auto",
+                                width: "100%"
                             }} onClick={e => {ShowSummamry(e); MonthBars(monthStats)}}>Pokaż podsumowanie aktualnego miesiaca</button>
                         </div>
                     </div>
