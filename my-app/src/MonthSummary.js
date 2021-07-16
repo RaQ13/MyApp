@@ -4,7 +4,7 @@ const API = "http://localhost:3000";
 
 export const MonthSummary = (props) => {
 
-    const [month, setMonth] = useState("");
+    const [month, setMonth] = useState(props.date.getMonth() + 1 );
     const [monthStats, setMonthStats] = useState([]);
     const [fowardedMonth, setFowardedMonth] = useState([]);
     const [showSummary, setShowSummary] = useState(false);
@@ -22,16 +22,7 @@ export const MonthSummary = (props) => {
     const ShowSummamry = (e) => {
         if (showSummary === false) {
             setShowSummary(prev => (!prev));
-            setMonth(props.date.getMonth() + 1);
         }
-    }
-
-    const SalarySum = () => {
-        let salarySum = 0;
-        {fowardedMonth.forEach(function (day){
-            salarySum += day.salary;
-        })}
-        return salarySum.toFixed(2);
     }
 
     const MonthBars = (db) => {
@@ -44,17 +35,28 @@ export const MonthSummary = (props) => {
         setFowardedMonth(searchedMonths);
     }
 
+    const SalarySum = () => {
+        let salarySum = 0;
+        {fowardedMonth.forEach(function (day){
+            salarySum += day.salary;
+        })}
+        return salarySum.toFixed(2);
+    }
+
+
     const ChooseMonthBars = (ev) => {
 
         if (ev.target.innerText === "Poprzedni miesiąc") {
-            setMonth(prev => (prev -1));
-            MonthBars(monthStats);
+            if (month > 1) {
+                setMonth(prev => (prev -1));
+            }
         }
         if (ev.target.innerText === "Następny miesiąc") {
-            setMonth(prev => (prev +1));
-            MonthBars(monthStats);
-            console.log(month);
+            if (month < 12) {
+                setMonth(prev => (prev +1));
+            }
         }
+        MonthBars(monthStats);
     }
 
     const ShowDay = (ev) => {
@@ -75,10 +77,10 @@ export const MonthSummary = (props) => {
                 return day.day === Number(fowardedDay);
             })
         setShownDay(choosenDay);
-            console.log(shownDay);
     }
 
     const Month = () => {
+
         if (month === 1) {
             return <h2>Podsumowanie miesiąca styczeń</h2>
         }
@@ -117,7 +119,6 @@ export const MonthSummary = (props) => {
         }
     }
 
-    console.log(month)
 
     if (showSummary === false) {
         return (
@@ -130,7 +131,7 @@ export const MonthSummary = (props) => {
                             <button style={{
                                 display: "block",
                                 margin: "0 auto",
-                            }} onClick={e => {ShowSummamry(e); MonthBars(monthStats); }}>Pokaż podsumowanie aktualnego miesiaca</button>
+                            }} onClick={e => {ShowSummamry(e); MonthBars(monthStats)}}>Pokaż podsumowanie aktualnego miesiaca</button>
                         </div>
                     </div>
                 </div>
@@ -138,9 +139,12 @@ export const MonthSummary = (props) => {
         )
     }
 
+    console.log(month);
+    console.log(fowardedMonth);
+
     return (
         <>
-            <div className="container month__summary__container">
+            <div className={`container month__summary__container`}>
                 <div className="month__summary">
                     {Month()}
                     <p>W tym miesiącu zarobiłeś: {SalarySum()}</p>
@@ -170,7 +174,7 @@ export const MonthSummary = (props) => {
                     </ul>
                     <p className="days-bars__effectivenes">Efektywność %</p>
                 </div>
-                <div onClick={ev => {ChooseMonthBars(ev)}} className="month__summary__choose-btns">
+                <div onClick={ev => {ChooseMonthBars(ev);}} className="month__summary__choose-btns">
                     <button>Poprzedni miesiąc</button>
                     <button>Następny miesiąc</button>
                 </div>

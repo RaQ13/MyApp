@@ -65,14 +65,6 @@ export const Main = (props) => {
     //----------------------------------
 
     const SetDay = (e) => {
-        console.log(monthNow)
-        console.log(dayNow)
-        console.log(packagesSum)
-        console.log(zpoSum)
-        console.log(notifications + notifZpo)
-        console.log(salary)
-        console.log(effectiveness)
-        console.log(rate)
         e.preventDefault();
         setDay({
             month: monthNow,
