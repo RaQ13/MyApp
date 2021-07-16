@@ -270,6 +270,7 @@ body:before {
     }
     .days-numbers {
       li {
+        border-top: 2px dashed black;
         align-items: flex-end;
         height: 100%;
         p {

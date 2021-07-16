@@ -139,9 +139,6 @@ export const MonthSummary = (props) => {
         )
     }
 
-    console.log(month);
-    console.log(fowardedMonth);
-
     return (
         <>
             <div className={`container month__summary__container`}>

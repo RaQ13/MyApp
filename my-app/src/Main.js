@@ -54,9 +54,7 @@ export const Main = (props) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(day)
-        }).then(res => res.json()).then(data => {
-            console.log(data);
-        })
+        }).then(res => res.json())
             .catch(error => {
                 console.log(error);
             })
