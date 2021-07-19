@@ -5,18 +5,16 @@
   padding: 0;
 }
 
+$section-background: #5B605F;
+$header-color: #4a4a49;
+$color-primary: #FF6600;
+$background-color: #FFFFFA;
+$color-white: #FFF;
+
 @mixin center {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-@mixin gradientBackground {
-  background: #f0b7a1;
-  background: -moz-linear-gradient(-45deg,  #f0b7a1 0%, #752201 10%, #752201 23%, #bf6e4e 94%);
-  background: -webkit-linear-gradient(-45deg,  #f0b7a1 0%,#752201 10%,#752201 23%,#bf6e4e 94%);
-  background: linear-gradient(135deg,  #f0b7a1 0%,#752201 10%,#752201 23%,#bf6e4e 94%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=1 );
 }
 
 @font-face {
@@ -26,69 +24,46 @@
   url("../fonts/Prime-Regular.woff") format("woff");
 }
 
-h1, .header__date, button, .shown__day__list, h3 {
-  color: wheat;
+h1, h2 {
+  color: $color-primary;
+}
+
+.header__date, button, .shown__day__list, h3, p, label {
+  color: $color-white;
 }
 button {
   padding: 10px 20px;
 }
 
 button {
-  background: #f0b7a1; /* Old browsers */
-  background: -moz-radial-gradient(center, ellipse cover, #f0b7a1 0%, #752201 5%, #752201 5%, #752201 70%, #bf6e4e 94%); /* FF3.6-15 */
-  background: -webkit-radial-gradient(center, ellipse cover, #f0b7a1 0%,#752201 5%,#752201 5%,#752201 70%,#bf6e4e 94%); /* Chrome10-25,Safari5.1-6 */
-  background: radial-gradient(ellipse at center, #f0b7a1 0%,#752201 5%,#752201 5%,#752201 70%,#bf6e4e 94%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background-color: $color-primary;
   border-radius: 5px;
 }
 
-//header
 body {
-  position: relative;
+  background-color: $background-color;
 }
 
-body:before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: lightblue url("/images/money.jpg") no-repeat fixed center;
-  background-size: cover;
-  opacity: 40%;
-  z-index: -1;
-}
+//header
 
 .header {
   @include center;
   justify-content: space-between;
-  background: #f0b7a1; /* Old browsers */
-  background: -moz-linear-gradient(left,  #f0b7a1 0%, #752201 10%, #752201 23%, #bf6e4e 94%);
-  background: -webkit-linear-gradient(left,  #f0b7a1 0%,#752201 10%,#752201 23%,#bf6e4e 94%);
-  background: linear-gradient(to right,  #f0b7a1 0%,#752201 10%,#752201 23%,#bf6e4e 94%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=1 );
-  border-bottom: 4px solid #752201;
+  background-color: $header-color;
+  position: relative;
+  padding: 10px 20px;
   h1 {
     font-size: 3rem;
     font-family: "Prime", cursive;
-  }
-  position: relative;
-  padding: 0 20px;
-  .hamburger {
-    font-size: 1.5rem;
-  }
-  .header__list {
-    position: absolute;
-    top: 30px;
-    right: 0;
   }
 }
 
 //daily form
 
 .daily__form__container {
-  @include gradientBackground;
   height: 50vh;
   margin-top: 100px;
+  background-color: $header-color;
   position: relative;
   @include center;
   @media (min-width: 0px) and (max-width: $desktop) {
@@ -101,6 +76,7 @@ body:before {
       @include center;
       flex-direction: column;
       input {
+        background-color: $header-color;
         @media (min-width: $tablet) and (max-width: $desktop) {
           width: 200px;
         } @media (min-width: 0px) and (max-width: $tablet) {
@@ -109,6 +85,9 @@ body:before {
         width: 300px;
         height: 1.5rem;
         margin: 0 0 20px 0;
+      }
+      input::placeholder {
+        color: $background-color;
       }
       label:nth-child(1) {
         position: relative;
@@ -152,8 +131,8 @@ body:before {
 }
 
 .daily__form, .data__input, .day__summary {
-  border: 3px groove wheat;
-  background-color: wheat;
+  border: 3px groove $color-primary;
+  background-color: $section-background;
 }
 
 .data__input {
@@ -234,17 +213,21 @@ body:before {
   .month__summary {
     @include center;
     justify-content: space-between;
+    margin-top: 50px;
     width: 100%;
     h2 {
       font-size: 2rem;
     }
+    p {
+      color: $section-background;
+    }
   }
   .month__summary__bars {
-    @include gradientBackground;
     height: 100%;
     width: 100%;
     position: relative;
     overflow: auto;
+    background-color: $header-color;
     .days-bars, .days-numbers {
       padding: 30px;
       display: flex;
@@ -336,10 +319,13 @@ body:before {
   width: 100%;
   margin-top: 2rem;
   padding: 20px;
-  @include gradientBackground;
+  background-color: $header-color;
   .shown__day__list {
+    padding: 20px;
     margin-top: 2rem;
     list-style-type: "-- ";
     list-style-position: inside;
+    background-color: $section-background;
+    border: 1px solid $color-primary;
   }
 }

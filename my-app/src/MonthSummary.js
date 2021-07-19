@@ -10,6 +10,22 @@ export const MonthSummary = (props) => {
     const [showSummary, setShowSummary] = useState(false);
     const [shownDay, setShownDay] = useState([]);
 
+    const months = [
+        '',
+        'styczen',
+        'luty',
+        'marzec',
+        'kwiecień',
+        'maj',
+        'czerwiec',
+        'lipiec',
+        'sierpień',
+        'wrzesień',
+        'październik',
+        'listopad',
+        'grudzień'
+    ]
+
     useEffect(() => {
         fetch(`${API}/db`).then(res => res.json()).then(data => {
             setMonthStats(data.db);
@@ -80,43 +96,7 @@ export const MonthSummary = (props) => {
     }
 
     const Month = () => {
-
-        if (month === 1) {
-            return <h2>Podsumowanie miesiąca styczeń</h2>
-        }
-        if (month === 2) {
-            return <h2>Podsumowanie miesiąca luty</h2>
-        }
-        if (month === 3) {
-            return <h2>Podsumowanie miesiąca marzec</h2>
-        }
-        if (month === 4) {
-            return <h2>Podsumowanie miesiąca kwiecień</h2>
-        }
-        if (month === 5) {
-            return <h2>Podsumowanie miesiąca maj</h2>
-        }
-        if (month === 6) {
-            return <h2>Podsumowanie miesiąca czerwiec</h2>
-        }
-        if (month === 7) {
-            return <h2>Podsumowanie miesiąca lipiec</h2>
-        }
-        if (month === 8) {
-            return <h2>Podsumowanie miesiąca sierpień</h2>
-        }
-        if (month === 9) {
-            return <h2>Podsumowanie miesiąca wrzesień</h2>
-        }
-        if (month === 10) {
-            return <h2>Podsumowanie miesiąca październik</h2>
-        }
-        if (month === 11) {
-            return <h2>Podsumowanie miesiąca listopad</h2>
-        }
-        if (month === 12) {
-            return <h2>Podsumowanie miesiąca grudzień</h2>
-        }
+        return <h2>Podsumowanie miesiąca {months[month]}</h2>
     }
 
 
