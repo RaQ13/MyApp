@@ -1,0 +1,332 @@
+@import "grid.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+$section-background: #5B605F;
+$header-color: #4a4a49;
+$color-primary: #FF6600;
+$background-color: #FFFFFA;
+$color-white: #FFF;
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@font-face {
+  font-family: "Prime";
+  src: local("Prime"),
+  url("../fonts/Prime-Regular.woff2") format("woff2"),
+  url("../fonts/Prime-Regular.woff") format("woff");
+}
+
+h1, h2 {
+  color: $color-primary;
+}
+
+.header__date, button, .shown__day__list, h3, p, label {
+  color: $color-white;
+}
+button {
+  padding: 10px 20px;
+}
+
+button {
+  background-color: $color-primary;
+  border-radius: 5px;
+}
+
+body {
+  background-color: $background-color;
+}
+
+//header
+
+.header {
+  @include center;
+  justify-content: space-between;
+  background-color: $header-color;
+  position: relative;
+  padding: 10px 20px;
+  h1 {
+    font-size: 3rem;
+    font-family: "Prime", cursive;
+  }
+}
+
+//daily form
+
+.daily__form__container {
+  height: 50vh;
+  margin-top: 100px;
+  background-color: $header-color;
+  position: relative;
+  @include center;
+  @media (min-width: 0px) and (max-width: $desktop) {
+    height: 80vh;
+    margin-top: 50px;
+  }
+  .row {
+    width: 100%;
+    .daily__form {
+      @include center;
+      flex-direction: column;
+      input {
+        color: $color-primary;
+        background-color: $header-color;
+        @media (min-width: $tablet) and (max-width: $desktop) {
+          width: 200px;
+        } @media (min-width: 0px) and (max-width: $tablet) {
+          margin: 0 0 10px 0;
+      }
+        width: 300px;
+        height: 1.5rem;
+        margin: 0 0 20px 0;
+      }
+      input::placeholder {
+        color: $background-color;
+      }
+      label:nth-child(1) {
+        position: relative;
+        left: -46px;
+      }
+      label:nth-child(3) {
+        position: relative;
+        left: -91px;
+      }
+      label:nth-child(5) {
+        position: relative;
+        left: -64px;
+      }
+      label:nth-child(7) {
+        position: relative;
+        left: -95px;
+      }
+      label:nth-child(9) {
+        position: relative;
+        left: -75px;
+      }
+      @media (min-width: $tablet) and (max-width: $desktop) {
+        label:nth-child(1) {
+          left: 3px;
+        }
+        label:nth-child(3) {
+          left: -41px;
+        }
+        label:nth-child(5) {
+          left: -13px;
+        }
+        label:nth-child(7) {
+          left: -45px;
+        }
+        label:nth-child(9) {
+          left: -24px;
+        }
+      }
+    }
+  }
+}
+
+.daily__form, .data__input, .day__summary {
+  border: 3px groove $color-primary;
+  background-color: $section-background;
+}
+
+.data__input {
+  align-items: flex-start;
+  width: 100%;
+  @media (max-width: $desktop) and (min-width: 0px) {
+    .data__input__container {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+      p {
+        position: relative;
+      }
+      p:nth-child(1) {
+        left: -25px;
+      }
+      p:nth-child(2) {
+        left: -47px;
+      }
+      p:nth-child(3) {
+        left: -23px;
+      }
+      p:nth-child(5) {
+        left: -115px;
+      }
+      p:nth-child(6) {
+        left: -66px;
+      }
+      @media (min-width: $tablet) and (max-width: $desktop) {
+        text-align: left;
+        p:nth-child(1), p:nth-child(2), p:nth-child(3), p:nth-child(5), p:nth-child(6) {
+          left: 0;
+        }
+      }
+    }
+  }
+}
+
+
+.day__summary {
+  position: relative;
+  padding: 0 50px 0 0;
+  width: 100%;
+  @media (max-width: 767px) {
+    width: 100%;
+    height: 300px;
+  }
+  @include center;
+  flex-direction: column;
+  .effectiveness-bar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    @include center;
+    .day-bar {
+      transform: rotate(90deg);
+    }
+  }
+  @media (max-width: $tablet) {
+    p:nth-child(1) {
+      position: relative;
+      left: -45px;
+    }
+    p:nth-child(2) {
+      position: relative;
+      left: -52px;
+    }
+  }
+}
+
+//month summary section
+
+.month__summary__container {
+  @include center;
+  flex-direction: column;
+  height: 30vh;
+  .month__summary {
+    @include center;
+    justify-content: space-between;
+    margin-top: 50px;
+    width: 100%;
+    h2 {
+      font-size: 2rem;
+    }
+    p {
+      color: $section-background;
+    }
+  }
+  .month__summary__bars {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: auto;
+    background-color: $header-color;
+    .days-bars, .days-numbers {
+      padding: 30px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 80%;
+      li {
+        @include center;
+        width: 20px;
+        list-style-type: none;
+        margin: 0 10px;
+        position: sticky;
+        right: 0;
+        z-index: 1;
+        cursor: pointer;
+        p {
+          transform: rotate(270deg);
+        }
+      }
+    }
+    .days-numbers {
+      li {
+        border-top: 2px dashed black;
+        align-items: flex-end;
+        height: 100%;
+        p {
+          transform: rotate(0deg);
+        }
+      }
+    }
+    .days-numbers::before, .days-bars:before {
+      content: "";
+      position: absolute;
+      left: 5px;
+      bottom: 7px;
+      width: 3px;
+      height: 90%;
+      background-color: black;
+    }
+    //linia dół
+    .days-bars::before {
+      bottom: 5px;
+      width: 95%;
+      height: 3px;
+    }
+    .days-numbers::after, .days-bars::after {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 20px;
+      border: solid black;
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 3px;
+      transform: rotate(225deg);
+    }
+    // strzałka dół
+    .days-bars::after {
+      left: 95%;
+      top: calc(100% - 11px);
+      transform: rotate(315deg);
+    }
+    .days-bars__effectivenes {
+      position: absolute;
+      top: 50%;
+      left: -38px;
+      transform: rotate(270deg);
+    }
+    .days-bars__number {
+      position: absolute;
+      bottom: 9px;
+      left: 40%;
+    }
+  }
+  .month__summary__choose-btns {
+    width: 100%;
+    @include center;
+    justify-content: space-between;
+    button {
+      display: block;
+    }
+  }
+}
+
+.shown__day__stats {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 20px;
+  background-color: $header-color;
+  .shown__day__list {
+    padding: 20px;
+    margin-top: 2rem;
+    list-style-type: "-- ";
+    list-style-position: inside;
+    background-color: $section-background;
+    border: 1px solid $color-primary;
+  }
+}
