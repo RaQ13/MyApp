@@ -1,12 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 const API = "http://localhost:3000";
 
 export const MonthSummary = (props) => {
-
-    const [month, setMonth] = useState(props.date.getMonth() + 1 );
+    const [month, setMonth] = useState(props.date.getMonth() + 1);
     const [monthStats, setMonthStats] = useState([]);
-    const [fowardedMonth, setFowardedMonth] = useState([]);
+    const [forwardedMonth, setForwardedMonth] = useState([]);
     const [showSummary, setShowSummary] = useState(false);
     const [shownDay, setShownDay] = useState([]);
 
@@ -24,154 +23,131 @@ export const MonthSummary = (props) => {
         'październik',
         'listopad',
         'grudzień'
-    ]
+    ];
 
     useEffect(() => {
         fetch(`${API}/db`).then(res => res.json()).then(data => {
-            setMonthStats(data.db);
+            setMonthStats(data);
+            console.log("test");
+            // Aktualizacja forwardedMonth po załadowaniu danych
+            const initialMonthData = data.filter(item => item.month === month);
+            setForwardedMonth(initialMonthData);
         })
             .catch(error => {
                 console.log(error);
-            })
-    }, []);
+            });
+    }, [month]);
 
-    const ShowSummamry = (e) => {
-        if (showSummary === false) {
-            setShowSummary(prev => (!prev));
-        }
-    }
+    const toggleSummary = () => {
+        setShowSummary(prev => !prev);
+    };
 
-    const MonthBars = (db) => {
+    const filterMonthData = () => {
+        const filteredData = monthStats.filter(item => item.month === month);
+        setForwardedMonth(filteredData);
+    };
 
-        const months = Array.from(db);
-        const searchedMonths = months.filter(function (filteredMonth) {
-            return filteredMonth.month === month;
-
-        })
-        setFowardedMonth(searchedMonths);
-    }
-
-    const SalarySum = () => {
+    const calculateSalarySum = () => {
         let salarySum = 0;
-        {fowardedMonth.forEach(function (day){
+        forwardedMonth.forEach(day => {
             salarySum += day.salary;
-        })}
+        });
         return salarySum.toFixed(2);
-    }
+    };
 
+    const handleMonthChange = (direction) => {
+        setMonth(prev => {
+            let newMonth = prev;
+            if (direction === "prev" && prev > 1) newMonth = prev - 1;
+            if (direction === "next" && prev < 12) newMonth = prev + 1;
+            return newMonth;
+        });
+    };
 
-    const ChooseMonthBars = (ev) => {
-
-        if (ev.target.innerText === "Poprzedni miesiąc") {
-            if (month > 1) {
-                setMonth(prev => (prev -1));
-            }
-        }
-        if (ev.target.innerText === "Następny miesiąc") {
-            if (month < 12) {
-                setMonth(prev => (prev +1));
-            }
-        }
-        MonthBars(monthStats);
-    }
-
-    const ShowDay = (ev) => {
-
-        let fowardedDay = "";
+    const handleDayClick = (ev) => {
+        let clickedDay = "";
 
         if (ev.target.tagName !== "LI" && ev.target.tagName !== "P") {
-            return
+            return;
         }
 
         if (ev.target.tagName === "LI") {
-            fowardedDay = ev.target.innerText;
-            }
-            if (ev.target.tagName === "P") {
-                fowardedDay = ev.target.parentElement.innerText;
-            }
-            const choosenDay = fowardedMonth.filter(function (day){
-                return day.day === Number(fowardedDay);
-            })
-        setShownDay(choosenDay);
-    }
+            clickedDay = ev.target.innerText;
+        }
+        if (ev.target.tagName === "P") {
+            clickedDay = ev.target.parentElement.innerText;
+        }
+        const chosenDay = forwardedMonth.filter(day => day.day === Number(clickedDay));
+        setShownDay(chosenDay);
+    };
 
-    const Month = () => {
-        return <h2>Podsumowanie miesiąca {months[month]}</h2>
-    }
+    const renderMonthHeader = () => {
+        return <h2>Podsumowanie miesiąca {months[month]}</h2>;
+    };
 
+    useEffect(() => {
+        filterMonthData();
+    }, [month, monthStats]);
 
-    if (showSummary === false) {
+    if (!showSummary) {
         return (
-            <>
-                <div className="container month__summary__container" style={{
-                    width: "20%",
-                }}>
-                    <div className="month__summary">
-                        <div className="month__summary__bars">
-                            <button style={{
-                                display: "block",
-                                margin: "0 auto",
-                                width: "100%"
-                            }} onClick={e => {ShowSummamry(e); MonthBars(monthStats)}}>Pokaż podsumowanie aktualnego miesiaca</button>
-                        </div>
+            <div className="container month__summary__container" style={{ width: "20%" }}>
+                <div className="month__summary">
+                    <div className="month__summary__bars">
+                        <button
+                            style={{ display: "block", margin: "0 auto", width: "100%" }}
+                            onClick={() => { toggleSummary(); filterMonthData(); }}
+                        >
+                            Pokaż podsumowanie aktualnego miesiaca
+                        </button>
                     </div>
                 </div>
-            </>
-        )
+            </div>
+        );
     }
 
     return (
         <>
-            <div className={`container month__summary__container`}>
+            <div className="container month__summary__container">
                 <div className="month__summary">
-                    {Month()}
-                    <p>W tym miesiącu zarobiłeś: {SalarySum()}</p>
+                    {renderMonthHeader()}
+                    <p>W tym miesiącu zarobiłeś: {calculateSalarySum()}zł</p>
                 </div>
-                <div onClick={ev => {ShowDay(ev);}} className="month__summary__bars">
+                <div onClick={handleDayClick} className="month__summary__bars">
                     <ul className="days-bars">
-                        {fowardedMonth.map(function (day, index){
-                            let dayEffect = false
-                            if (day.effectiveness < 90) {
-                                    dayEffect = false;
-                            } else dayEffect = true;
+                        {forwardedMonth.map((day, index) => {
+                            const dayEffect = day.effectiveness >= 90;
                             return (
-                                <li key={index} style={{
-                                    background: dayEffect ? "green" : "red",
-                                    height: `${day.effectiveness}%`,
-                                }}><p>{day.effectiveness}%</p></li>
-                            )
+                                <li key={index} style={{ background: dayEffect ? "green" : "red", height: `${day.effectiveness}%` }}>
+                                    <p>{day.effectiveness}%</p>
+                                </li>
+                            );
                         })}
                     </ul>
                     <ul className="days-numbers">
-                        {fowardedMonth.map(function (day, index){
-                            return (
-                                <li key={index}><p>{day.day}</p></li>
-                            )
-                        })}
+                        {forwardedMonth.map((day, index) => (
+                            <li key={index}><p>{day.day}</p></li>
+                        ))}
                         <p className="days-bars__number">Dzień L.p.</p>
                     </ul>
                     <p className="days-bars__effectivenes">Efektywność %</p>
                 </div>
-                <div onClick={ev => {ChooseMonthBars(ev);}} className="month__summary__choose-btns">
-                    <button>Poprzedni miesiąc</button>
-                    <button>Następny miesiąc</button>
+                <div className="month__summary__choose-btns">
+                    <button onClick={() => handleMonthChange("prev")}>Poprzedni miesiąc</button>
+                    <button onClick={() => handleMonthChange("next")}>Następny miesiąc</button>
                 </div>
             </div>
-            {shownDay.map(function (el, index){
-                return (
-                    <>
-                        <div className="container shown__day__stats">
-                            <h3>Podglądasz dzień: {el.day}</h3>
-                            <ul className="shown__day__list">
-                                <li key={index}>W tym dniu miałeś {el.packages} paczek</li>
-                                <li key={index}>Awizowałeś: {el.notifications} paczek</li>
-                                <li key={index}>Zarobiłeś tego dnia: {el.salary}zł</li>
-                                <li key={index}>Twoja doręczalność wynosiła {el.effectiveness} paczek</li>
-                            </ul>
-                        </div>
-                    </>
-                )
-            })}
+            {shownDay.map((el, index) => (
+                <div key={index} className="container shown__day__stats">
+                    <h3>Podglądasz dzień: {el.day}</h3>
+                    <ul className="shown__day__list">
+                        <li>W tym dniu miałeś {el.packages} paczek</li>
+                        <li>Awizowałeś: {el.notifications} paczek</li>
+                        <li>Zarobiłeś tego dnia: {el.salary}zł</li>
+                        <li>Twoja doręczalność wynosiła {el.effectiveness} paczek</li>
+                    </ul>
+                </div>
+            ))}
         </>
-    )
+    );
 }
